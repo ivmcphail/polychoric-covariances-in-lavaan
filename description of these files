@@ -1,0 +1,33 @@
+Note to anyone who takes a look at these files.
+
+These R code files were created in the context of conducting longitudinal measurement invariance with data from a 20-item scale that was measured before and
+and after a psychotherapy intervention. 
+
+The sample is relatively small at n = 109. The items have a 3-point response scale. 
+
+Given problems with NPD in the polychoric correlation matrix, I decided to smooth the NPD correlation matrix so that it was positive definite and suitable for 
+use in invariance testing. I used the mbend package for smoothing. 
+
+This created the follow-on issue of using a polychoric covariance matrix as input into lavaan for the invariance testing instead of using the raw data.
+
+The files in this github project are the results of my efforts to develop code that will allow me to use polychoric covariances as input. I created this project
+and attached the code to facilitate getting advice from the lavaan google group on developing the code for these data prep steps. 
+
+The files are
+
+Creating covariance matrix -- Here I use lavCov to retrieve the polychoric covariance matrix and the additional pieces of input required to run lavaan cfa on a 
+covariance matrix.
+Seeting the model -- This is the model syntax for the null model when conducting longitudinal measurement invariance testing with ordinal data.
+CFA run -- This is the lavaan syntax to run the null model using the covariance matrix as input.
+
+If you see something off in the code, please do let me know.
+
+For anyone who is interested in the article that provided the model syntax, the full reference is below. I strongly recommend the article, it is a good overview of doing
+these analyses and the authors are generous enough to have included R, MPlus, and OpenMX code for doing longitudinal measurement invariance testing with ordinal data.
+
+Liu, Y., Millsap, R. E., West, S. G., Tein, J. Y., Tanaka, R., & Grimm, K. J. (2017). Testing measurement invariance in longitudinal data with ordered-categorical 
+measures. Psychological Methods, 22(3), 486.
+
+Best,
+
+Ian
