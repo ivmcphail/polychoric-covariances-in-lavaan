@@ -1,0 +1,58 @@
+#### Attempting to use polychoric covariance matrices as input for lavaan models in the case of multiply imputed dataset
+#### Note to reader: following on the other code files in this project, which have been my attempts to be able to use 
+#### polychoric covariance matrices as input when conducting longitudinal measurement invariance in lavaan,
+#### here I am attempting to extend the previous code for use when working with multiple imputed datasets
+
+
+#### Setting up imputed datasets for use in lavaan
+## Note: imputed datasets were created in mice package, pmm method used, 60 imputed datasets were created (based on the FICO statistic)
+imp.list <- list()
+for (i in 1:imp$m) imp.list[[i]] <- complete(imp, action = i)
+
+
+#### Using the null model specified in the earlier model syntax file
+pmm.covar.mi.cfa <- cfa.mi(Null.Model, data = imp.list, miPackage = "mice",
+          seed = 12345,
+          ordered=c(
+            "BUMBYMQ1_PRE_r", "BUMBYMQ1_POST_r", "BUMBYMQ3_PRE_r", "BUMBYMQ3_POST_r", 
+            "BUMBYMQ5_PRE_r", "BUMBYMQ5_POST_r", "BUMBYMQ7_PRE_r", "BUMBYMQ7_POST_r", 
+            "BUMBYMQ8_PRE_r", "BUMBYMQ8_POST_r", "BUMBYMQ12_PRE_r", "BUMBYMQ12_POST_r", 
+            "BUMBYMQ13_PRE_r", "BUMBYMQ13_POST_r", "BUMBYMQ15_PRE_r", "BUMBYMQ15_POST_r", 
+            "BUMBYMQ18_PRE_r", "BUMBYMQ18_POST_r", "BUMBYMQ20_PRE_r", "BUMBYMQ20_POST_r", 
+            "BUMBYMQ23_PRE_r", "BUMBYMQ23_POST_r", "BUMBYMQ24_PRE_r", "BUMBYMQ24_POST_r", 
+            "BUMBYMQ26_PRE_r", "BUMBYMQ26_POST_r", "BUMBYMQ27_PRE_r", "BUMBYMQ27_POST_r", 
+            "BUMBYMQ28_PRE_r", "BUMBYMQ28_POST_r", "BUMBYMQ32_PRE_r", "BUMBYMQ32_POST_r", 
+            "BUMBYMQ33_PRE_r", "BUMBYMQ33_POST_r", "BUMBYMQ35_PRE_r", "BUMBYMQ35_POST_r", 
+            "BUMBYMQ37_PRE_r", "BUMBYMQ37_POST_r", "BUMBYMQ38_PRE_r", "BUMBYMQ38_POST_r"),
+          group = NULL,
+          estimator = "ULSMV")
+## Resulted in 50+ warnings regarding NPD matrices, which is to be expected given the data I am working with
+## Interstingly, when I ran the above model using "lavaan.mi" instead of "cfa.mi", no warnings were produced 
+
+
+#### Given my interest in using a smoothed, PD matrix as input for this invariance testing
+#### Below are my attempts to get the required information to do this in lavaan in the context of multiply imputed data
+#### Problems emerged as I was doing this, the following lavaan google group thread helped but did not solve the problem:
+## https://groups.google.com/g/lavaan/c/NEfgWebjBWU
+
+## Using vcov to hopefully get a variance-covariance matrix pooled across imputed datsets
+vcov(pmm.covar.mi.cfa, type = c("within"), scale.W = FALSE, omit.imps = c("no.conv"))
+## Which results in the error:
+# Error in UseMethod("vcov") : 
+  no applicable method for 'vcov' applied to an object of class "c('lavaan.mi', 'lavaanList')"
+
+## Looking to see that covariances were actually saved in the vcov spot
+pmm.covar.mi.cfa@vcovList[[1]]
+# This worked, however, the covariance matrix was wildly different from every other polychoric covariance matrix I have computed with these data, which makes
+# me suspicious that either I am doing something wrong or of this particular method of computing polychoric covariances in lavaan
+  
+  
+## Using summary function to hopefully get the information required to use covariance matrix as input
+summary(pmm.covar.mi.cfa, scale.W = TRUE, omit.imps = c("no.conv"),
+        output = "text", fit.measures = TRUE)
+## Which results in the following error
+# Error in .local(object, ...) : 
+  unused arguments (scale.W = TRUE, omit.imps = "no.conv", output = "text", fit.measures = TRUE)
+  
+# seems like a good, if frustrating place to stop for the day
+        
