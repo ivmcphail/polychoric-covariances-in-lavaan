@@ -19,13 +19,22 @@ lavcov <- lavCor(imp.pmm1.mol,
        cor.smooth = FALSE, 
        output = "fit")
 
-## Extract data for input into lavaans CFA function
 
+## Extract the needed pieces of information
 rtc20.poly.covar.lavaan <- lavInspect(lavcov, "cov.ov")
 rtc20.poly.mean.lavaan <- lavInspect(lavcov, "mean.ov")
+rtc20.poly.wlsv.lavaan <- lavInspect(lavcov, "wls.obs")
+rtc20.poly.nacov.lavaan <- lavInspect(lavcov, "Gamma") 
+
+
+#### Getting thresholds
+## Method 1
 rtc20.poly.th.lavaan <- lavInspect(lavcov, "thresholds")
+rtc20.poly.th.lavaan
 rtc20.poly.thidx.lavaan <- lavInspect(lavcov, "th.idx")
 rtc20.thresholds <- cbind(rtc20.poly.th.lavaan, rtc20.poly.thidx.lavaan)
 attr(rtc20.thresholds, "th.idx") <- c(2)
-rtc20.poly.wlsv.lavaan <- lavInspect(lavcov, "wls.obs")
-rtc20.poly.nacov.lavaan <- lavInspect(lavcov, "Gamma") 
+
+## Method 2
+rtc20.poly.th.lavaan2  <- lavInspect(lavcov, "sampstat")$th
+attr(rtc20.poly.th.lavaan2, "th.idx") <- lavInspect(lavcov, "th.idx")
