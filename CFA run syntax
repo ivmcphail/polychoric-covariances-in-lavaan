@@ -1,0 +1,845 @@
+#### Code for running invariance CFAs
+#### Only including the baseline model test here
+
+#### I made two attempts at identifying thresholds (see the creating polychoric covariances code file)
+#### my first attempt to get thresholds set: rtc20.thresholds
+#### my second attempt to get thresholds set: rtc20.poly.th.lavaan2 (starts at line 456)
+
+#### Below, I include CFAs for both methods for specifying thresholds, plus the warnings that resulted, and the output from these runs
+
+#### Running model CFA, using first attempt at setting thresholds
+Fit.Null.Model.covar <- cfa(Null.Model, sample.cov = rtc20.covar.mbend.hj, 
+                         sample.mean = rtc20.poly.mean.lavaan, sample.th = rtc20.thresholds, sample.nobs = 109,
+                         WLS.V = rtc20.poly.wlsv.lavaan, NACOV = rtc20.poly.nacov.lavaan,
+                         ordered=c(
+                           "BUMBYMQ1_PRE_r", "BUMBYMQ1_POST_r", "BUMBYMQ3_PRE_r", "BUMBYMQ3_POST_r", 
+                           "BUMBYMQ5_PRE_r", "BUMBYMQ5_POST_r", "BUMBYMQ7_PRE_r", "BUMBYMQ7_POST_r", 
+                           "BUMBYMQ8_PRE_r", "BUMBYMQ8_POST_r", "BUMBYMQ12_PRE_r", "BUMBYMQ12_POST_r", 
+                           "BUMBYMQ13_PRE_r", "BUMBYMQ13_POST_r", "BUMBYMQ15_PRE_r", "BUMBYMQ15_POST_r", 
+                           "BUMBYMQ18_PRE_r", "BUMBYMQ18_POST_r", "BUMBYMQ20_PRE_r", "BUMBYMQ20_POST_r", 
+                           "BUMBYMQ23_PRE_r", "BUMBYMQ23_POST_r", "BUMBYMQ24_PRE_r", "BUMBYMQ24_POST_r", 
+                           "BUMBYMQ26_PRE_r", "BUMBYMQ26_POST_r", "BUMBYMQ27_PRE_r", "BUMBYMQ27_POST_r", 
+                           "BUMBYMQ28_PRE_r", "BUMBYMQ28_POST_r", "BUMBYMQ32_PRE_r", "BUMBYMQ32_POST_r", 
+                           "BUMBYMQ33_PRE_r", "BUMBYMQ33_POST_r", "BUMBYMQ35_PRE_r", "BUMBYMQ35_POST_r", 
+                           "BUMBYMQ37_PRE_r", "BUMBYMQ37_POST_r", "BUMBYMQ38_PRE_r", "BUMBYMQ38_POST_r"),
+                         parameterization = "theta", estimator = "ULSMV", set.seed(12345), baseline = FALSE)
+warnings()
+
+Warning messages:
+1: In th.g[ord.idx] <- sample.th[[g]] :
+  number of items to replace is not a multiple of replacement length
+2: In lav_start(start.method = lavoptions$start, lavpartable = lavpartable,  ... :
+  lavaan WARNING: some starting values are non-finite; replacing them with 0.5; please provide better starting values.
+
+3: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+4: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+5: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+6: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+7: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+8: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+9: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+10: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+11: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+12: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+13: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+14: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+15: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+16: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+17: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+18: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+19: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+20: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+21: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+22: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+23: In lavaan::lavaan(model = Null.Model, data = set.seed(12345),  ... :
+  lavaan WARNING:
+    Model estimation FAILED! Returning starting values.
+24: In th[th.idx > 0L] <- TAU[, 1L] :
+  number of items to replace is not a multiple of replacement length
+25: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+26: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+27: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+28: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+29: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+30: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+31: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+32: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+33: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+34: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+35: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+36: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+37: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+38: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+39: In WLS.obs - WLS.est :
+  longer object length is not a multiple of shorter object length
+40: In diff * diff * WLS.VD :
+  longer object length is not a multiple of shorter object length
+41: In lavaan::lavaan(model = Null.Model, data = set.seed(12345),  ... :
+  lavaan WARNING: estimation of the baseline model failed.
+  
+  
+  summary(Fit.Null.Model.covar, fit.measures = TRUE)
+  
+  lavaan 0.6-12 did not run (perhaps do.fit = FALSE)?
+** WARNING ** Estimates below are simply the starting values
+
+  Estimator                                        ULS
+  Optimization method                           NLMINB
+  Number of model parameters                        86
+  Number of equality constraints                    40
+
+  Number of observations                           109
+
+
+Parameter Estimates:
+
+  Standard errors                           Robust.sem
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  F1T1 =~                                             
+    BUMBYMQ1_PRE_r    0.000                           
+    BUMBYMQ3_PRE_r    0.000                           
+    BUMBYMQ5_PRE_r    0.000                           
+    BUMBYMQ7_PRE_r    0.000                           
+    BUMBYMQ8_PRE_r    0.000                           
+    BUMBYMQ12_PRE_    0.000                           
+    BUMBYMQ13_PRE_    0.000                           
+    BUMBYMQ15_PRE_    0.000                           
+    BUMBYMQ18_PRE_    0.000                           
+    BUMBYMQ37_PRE_    0.000                           
+  F2T1 =~                                             
+    BUMBYMQ20_PRE_    0.000                           
+    BUMBYMQ23_PRE_    0.000                           
+    BUMBYMQ24_PRE_    0.000                           
+    BUMBYMQ26_PRE_    0.000                           
+    BUMBYMQ27_PRE_    0.000                           
+    BUMBYMQ28_PRE_    0.000                           
+    BUMBYMQ32_PRE_    0.000                           
+    BUMBYMQ33_PRE_    0.000                           
+    BUMBYMQ35_PRE_    0.000                           
+    BUMBYMQ38_PRE_    0.000                           
+  F1T2 =~                                             
+    BUMBYMQ1_POST_    0.000                           
+    BUMBYMQ3_POST_    0.000                           
+    BUMBYMQ5_POST_    0.000                           
+    BUMBYMQ7_POST_    0.000                           
+    BUMBYMQ8_POST_    0.000                           
+    BUMBYMQ12_POST    0.000                           
+    BUMBYMQ13_POST    0.000                           
+    BUMBYMQ15_POST    0.000                           
+    BUMBYMQ18_POST    0.000                           
+    BUMBYMQ37_POST    0.000                           
+  F2T2 =~                                             
+    BUMBYMQ20_POST    0.000                           
+    BUMBYMQ23_POST    0.000                           
+    BUMBYMQ24_POST    0.000                           
+    BUMBYMQ26_POST    0.000                           
+    BUMBYMQ27_POST    0.000                           
+    BUMBYMQ28_POST    0.000                           
+    BUMBYMQ32_POST    0.000                           
+    BUMBYMQ33_POST    0.000                           
+    BUMBYMQ35_POST    0.000                           
+    BUMBYMQ38_POST    0.000                           
+
+Covariances:
+                     Estimate  Std.Err  z-value  P(>|z|)
+  F1T1 ~~                                               
+    F1T2                0.000                           
+  F2T1 ~~                                               
+    F2T2                0.000                           
+ .BUMBYMQ1_PRE_r ~~                                     
+   .BUMBYMQ1_POST_      0.000                           
+ .BUMBYMQ3_PRE_r ~~                                     
+   .BUMBYMQ3_POST_      0.000                           
+ .BUMBYMQ5_PRE_r ~~                                     
+   .BUMBYMQ5_POST_      0.000                           
+ .BUMBYMQ7_PRE_r ~~                                     
+   .BUMBYMQ7_POST_      0.000                           
+ .BUMBYMQ8_PRE_r ~~                                     
+   .BUMBYMQ8_POST_      0.000                           
+ .BUMBYMQ12_PRE_r ~~                                    
+   .BUMBYMQ12_POST      0.000                           
+ .BUMBYMQ13_PRE_r ~~                                    
+   .BUMBYMQ13_POST      0.000                           
+ .BUMBYMQ15_PRE_r ~~                                    
+   .BUMBYMQ15_POST      0.000                           
+ .BUMBYMQ18_PRE_r ~~                                    
+   .BUMBYMQ18_POST      0.000                           
+ .BUMBYMQ20_PRE_r ~~                                    
+   .BUMBYMQ20_POST      0.000                           
+ .BUMBYMQ23_PRE_r ~~                                    
+   .BUMBYMQ23_POST      0.000                           
+ .BUMBYMQ24_PRE_r ~~                                    
+   .BUMBYMQ24_POST      0.000                           
+ .BUMBYMQ26_PRE_r ~~                                    
+   .BUMBYMQ26_POST      0.000                           
+ .BUMBYMQ27_PRE_r ~~                                    
+   .BUMBYMQ27_POST      0.000                           
+ .BUMBYMQ28_PRE_r ~~                                    
+   .BUMBYMQ28_POST      0.000                           
+ .BUMBYMQ32_PRE_r ~~                                    
+   .BUMBYMQ32_POST      0.000                           
+ .BUMBYMQ33_PRE_r ~~                                    
+   .BUMBYMQ33_POST      0.000                           
+ .BUMBYMQ35_PRE_r ~~                                    
+   .BUMBYMQ35_POST      0.000                           
+ .BUMBYMQ37_PRE_r ~~                                    
+   .BUMBYMQ37_POST      0.000                           
+ .BUMBYMQ38_PRE_r ~~                                    
+   .BUMBYMQ38_POST      0.000                           
+  F1T1 ~~                                               
+    F2T1                0.000       NA                  
+    F2T2                0.000       NA                  
+  F2T1 ~~                                               
+    F1T2                0.000       NA                  
+  F1T2 ~~                                               
+    F2T2                0.000       NA                  
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    F1T1              0.000                           
+    F2T1              0.000                           
+    F1T2              0.000                           
+    F2T2              0.000                           
+   .BUMBYMQ1_PRE_r    0.000                           
+   .BUMBYMQ1_POST_    0.000                           
+   .BUMBYMQ3_PRE_r    0.000                           
+   .BUMBYMQ3_POST_    0.000                           
+   .BUMBYMQ5_PRE_r    0.000                           
+   .BUMBYMQ5_POST_    0.000                           
+   .BUMBYMQ7_PRE_r    0.000                           
+   .BUMBYMQ7_POST_    0.000                           
+   .BUMBYMQ8_PRE_r    0.000                           
+   .BUMBYMQ8_POST_    0.000                           
+   .BUMBYMQ12_PRE_    0.000                           
+   .BUMBYMQ12_POST    0.000                           
+   .BUMBYMQ13_PRE_    0.000                           
+   .BUMBYMQ13_POST    0.000                           
+   .BUMBYMQ15_PRE_    0.000                           
+   .BUMBYMQ15_POST    0.000                           
+   .BUMBYMQ18_PRE_    0.000                           
+   .BUMBYMQ18_POST    0.000                           
+   .BUMBYMQ20_PRE_    0.000                           
+   .BUMBYMQ20_POST    0.000                           
+   .BUMBYMQ23_PRE_    0.000                           
+   .BUMBYMQ23_POST    0.000                           
+   .BUMBYMQ24_PRE_    0.000                           
+   .BUMBYMQ24_POST    0.000                           
+   .BUMBYMQ26_PRE_    0.000                           
+   .BUMBYMQ26_POST    0.000                           
+   .BUMBYMQ27_PRE_    0.000                           
+   .BUMBYMQ27_POST    0.000                           
+   .BUMBYMQ28_PRE_    0.000                           
+   .BUMBYMQ28_POST    0.000                           
+   .BUMBYMQ32_PRE_    0.000                           
+   .BUMBYMQ32_POST    0.000                           
+   .BUMBYMQ33_PRE_    0.000                           
+   .BUMBYMQ33_POST    0.000                           
+   .BUMBYMQ35_PRE_    0.000                           
+   .BUMBYMQ35_POST    0.000                           
+   .BUMBYMQ37_PRE_    0.000                           
+   .BUMBYMQ37_POST    0.000                           
+   .BUMBYMQ38_PRE_    0.000                           
+   .BUMBYMQ38_POST    0.000                           
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    B  (BUMBYMQ11)    0.500       NA                  
+    B (BUMBYMQ1t2)    0.500       NA                  
+    B  (BUMBYMQ11)    0.500       NA                  
+    B (BUMBYMQ1t2)    0.500       NA                  
+    B  (BUMBYMQ31)    0.500       NA                  
+    B (BUMBYMQ3t2)    0.500       NA                  
+    B  (BUMBYMQ31)    0.500       NA                  
+    B (BUMBYMQ3t2)    0.500       NA                  
+    B  (BUMBYMQ51)    0.500       NA                  
+    B  (BUMBYMQ52)    0.500       NA                  
+    B  (BUMBYMQ51)    0.500       NA                  
+    B  (BUMBYMQ52)    0.500       NA                  
+    B  (BUMBYMQ71)    0.500       NA                  
+    B  (BUMBYMQ72)    0.500       NA                  
+    B  (BUMBYMQ71)    0.500       NA                  
+    B  (BUMBYMQ72)    0.500       NA                  
+    B  (BUMBYMQ81)    0.500       NA                  
+    B  (BUMBYMQ82)    0.500       NA                  
+    B  (BUMBYMQ81)    0.500       NA                  
+    B  (BUMBYMQ82)    0.500       NA                  
+    B (BUMBYMQ121)    0.500       NA                  
+    B (BUMBYMQ122)    0.500       NA                  
+    B (BUMBYMQ121)    0.500       NA                  
+    B (BUMBYMQ122)    0.500       NA                  
+    B (BUMBYMQ131)    0.500       NA                  
+    B (BUMBYMQ132)    0.500       NA                  
+    B (BUMBYMQ131)    0.500       NA                  
+    B (BUMBYMQ132)    0.500       NA                  
+    B (BUMBYMQ151)    0.500       NA                  
+    B (BUMBYMQ152)    0.500       NA                  
+    B (BUMBYMQ151)    0.500       NA                  
+    B (BUMBYMQ152)    0.500       NA                  
+    B (BUMBYMQ181)    0.500       NA                  
+    B (BUMBYMQ182)    0.500       NA                  
+    B (BUMBYMQ181)    0.500       NA                  
+    B (BUMBYMQ182)    0.500       NA                  
+    B (BUMBYMQ201)    0.500       NA                  
+    B (BUMBYMQ202)    0.500       NA                  
+    B (BUMBYMQ201)    0.500       NA                  
+    B (BUMBYMQ202)    0.500       NA                  
+    B (BUMBYMQ231)    0.500       NA                  
+    B (BUMBYMQ232)    0.500       NA                  
+    B (BUMBYMQ231)    0.500       NA                  
+    B (BUMBYMQ232)    0.500       NA                  
+    B (BUMBYMQ241)    0.500       NA                  
+    B (BUMBYMQ242)    0.500       NA                  
+    B (BUMBYMQ241)    0.500       NA                  
+    B (BUMBYMQ242)    0.500       NA                  
+    B (BUMBYMQ261)    0.500       NA                  
+    B (BUMBYMQ262)    0.500       NA                  
+    B (BUMBYMQ261)    0.500       NA                  
+    B (BUMBYMQ262)    0.500       NA                  
+    B (BUMBYMQ271)    0.500       NA                  
+    B (BUMBYMQ272)    0.500       NA                  
+    B (BUMBYMQ271)    0.500       NA                  
+    B (BUMBYMQ272)    0.500       NA                  
+    B (BUMBYMQ281)    0.500       NA                  
+    B (BUMBYMQ282)    0.500       NA                  
+    B (BUMBYMQ281)    0.500       NA                  
+    B (BUMBYMQ282)    0.500       NA                  
+    B (BUMBYMQ321)    0.500       NA                  
+    B (BUMBYMQ322)    0.500       NA                  
+    B (BUMBYMQ321)    0.500       NA                  
+    B (BUMBYMQ322)    0.500       NA                  
+    B (BUMBYMQ331)    0.500       NA                  
+    B (BUMBYMQ332)    0.500       NA                  
+    B (BUMBYMQ331)    0.500       NA                  
+    B (BUMBYMQ332)    0.500       NA                  
+    B (BUMBYMQ351)    0.500       NA                  
+    B (BUMBYMQ352)    0.500       NA                  
+    B (BUMBYMQ351)    0.500       NA                  
+    B (BUMBYMQ352)    0.500       NA                  
+    B (BUMBYMQ371)    0.500       NA                  
+    B (BUMBYMQ372)    0.500       NA                  
+    B (BUMBYMQ371)    0.500       NA                  
+    B (BUMBYMQ372)    0.500       NA                  
+    B (BUMBYMQ381)    0.500       NA                  
+    B (BUMBYMQ382)    0.500       NA                  
+    B (BUMBYMQ381)    0.500       NA                  
+    B (BUMBYMQ382)    0.500       NA                  
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    F1T1              1.000                           
+    F2T1              1.000                           
+   .BUMBYMQ1_PRE_r    1.000                           
+   .BUMBYMQ1_POST_    1.000                           
+   .BUMBYMQ3_PRE_r    1.000                           
+   .BUMBYMQ3_POST_    1.000                           
+   .BUMBYMQ5_PRE_r    1.000                           
+   .BUMBYMQ5_POST_    1.000                           
+   .BUMBYMQ7_PRE_r    1.000                           
+   .BUMBYMQ7_POST_    1.000                           
+   .BUMBYMQ8_PRE_r    1.000                           
+   .BUMBYMQ8_POST_    1.000                           
+   .BUMBYMQ12_PRE_    1.000                           
+   .BUMBYMQ12_POST    1.000                           
+   .BUMBYMQ13_PRE_    1.000                           
+   .BUMBYMQ13_POST    1.000                           
+   .BUMBYMQ15_PRE_    1.000                           
+   .BUMBYMQ15_POST    1.000                           
+   .BUMBYMQ18_PRE_    1.000                           
+   .BUMBYMQ18_POST    1.000                           
+   .BUMBYMQ20_PRE_    1.000                           
+   .BUMBYMQ20_POST    1.000                           
+   .BUMBYMQ23_PRE_    1.000                           
+   .BUMBYMQ23_POST    1.000                           
+   .BUMBYMQ24_PRE_    1.000                           
+   .BUMBYMQ24_POST    1.000                           
+   .BUMBYMQ26_PRE_    1.000                           
+   .BUMBYMQ26_POST    1.000                           
+   .BUMBYMQ27_PRE_    1.000                           
+   .BUMBYMQ27_POST    1.000                           
+   .BUMBYMQ28_PRE_    1.000                           
+   .BUMBYMQ28_POST    1.000                           
+   .BUMBYMQ32_PRE_    1.000                           
+   .BUMBYMQ32_POST    1.000                           
+   .BUMBYMQ33_PRE_    1.000                           
+   .BUMBYMQ33_POST    1.000                           
+   .BUMBYMQ35_PRE_    1.000                           
+   .BUMBYMQ35_POST    1.000                           
+   .BUMBYMQ37_PRE_    1.000                           
+   .BUMBYMQ37_POST    1.000                           
+   .BUMBYMQ38_PRE_    1.000                           
+   .BUMBYMQ38_POST    1.000                           
+    F1T2              0.050       NA                  
+    F2T2              0.050       NA                  
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    BUMBYMQ1_PRE_r    1.000                           
+    BUMBYMQ3_PRE_r    1.000                           
+    BUMBYMQ5_PRE_r    1.000                           
+    BUMBYMQ7_PRE_r    1.000                           
+    BUMBYMQ8_PRE_r    1.000                           
+    BUMBYMQ12_PRE_    1.000                           
+    BUMBYMQ13_PRE_    1.000                           
+    BUMBYMQ15_PRE_    1.000                           
+    BUMBYMQ18_PRE_    1.000                           
+    BUMBYMQ37_PRE_    1.000                           
+    BUMBYMQ20_PRE_    1.000                           
+    BUMBYMQ23_PRE_    1.000                           
+    BUMBYMQ24_PRE_    1.000                           
+    BUMBYMQ26_PRE_    1.000                           
+    BUMBYMQ27_PRE_    1.000                           
+    BUMBYMQ28_PRE_    1.000                           
+    BUMBYMQ32_PRE_    1.000                           
+    BUMBYMQ33_PRE_    1.000                           
+    BUMBYMQ35_PRE_    1.000                           
+    BUMBYMQ38_PRE_    1.000                           
+    BUMBYMQ1_POST_    1.000                           
+    BUMBYMQ3_POST_    1.000                           
+    BUMBYMQ5_POST_    1.000                           
+    BUMBYMQ7_POST_    1.000                           
+    BUMBYMQ8_POST_    1.000                           
+    BUMBYMQ12_POST    1.000                           
+    BUMBYMQ13_POST    1.000                           
+    BUMBYMQ15_POST    1.000                           
+    BUMBYMQ18_POST    1.000                           
+    BUMBYMQ37_POST    1.000                           
+    BUMBYMQ20_POST    1.000                           
+    BUMBYMQ23_POST    1.000                           
+    BUMBYMQ24_POST    1.000                           
+    BUMBYMQ26_POST    1.000                           
+    BUMBYMQ27_POST    1.000                           
+    BUMBYMQ28_POST    1.000                           
+    BUMBYMQ32_POST    1.000                           
+    BUMBYMQ33_POST    1.000                           
+    BUMBYMQ35_POST    1.000                           
+    BUMBYMQ38_POST    1.000     
+  
+  
+  
+#### Running model CFA, using second attempt at setting thresholds
+Fit.Null.Model.covar <- cfa(Null.Model, sample.cov = rtc20.covar.mbend.hj, 
+                         sample.mean = rtc20.poly.mean.lavaan, sample.th = rtc20.poly.th.lavaan2, sample.nobs = 109,
+                         WLS.V = rtc20.poly.wlsv.lavaan, NACOV = rtc20.poly.nacov.lavaan,
+                         ordered=c(
+                           "BUMBYMQ1_PRE_r", "BUMBYMQ1_POST_r", "BUMBYMQ3_PRE_r", "BUMBYMQ3_POST_r", 
+                           "BUMBYMQ5_PRE_r", "BUMBYMQ5_POST_r", "BUMBYMQ7_PRE_r", "BUMBYMQ7_POST_r", 
+                           "BUMBYMQ8_PRE_r", "BUMBYMQ8_POST_r", "BUMBYMQ12_PRE_r", "BUMBYMQ12_POST_r", 
+                           "BUMBYMQ13_PRE_r", "BUMBYMQ13_POST_r", "BUMBYMQ15_PRE_r", "BUMBYMQ15_POST_r", 
+                           "BUMBYMQ18_PRE_r", "BUMBYMQ18_POST_r", "BUMBYMQ20_PRE_r", "BUMBYMQ20_POST_r", 
+                           "BUMBYMQ23_PRE_r", "BUMBYMQ23_POST_r", "BUMBYMQ24_PRE_r", "BUMBYMQ24_POST_r", 
+                           "BUMBYMQ26_PRE_r", "BUMBYMQ26_POST_r", "BUMBYMQ27_PRE_r", "BUMBYMQ27_POST_r", 
+                           "BUMBYMQ28_PRE_r", "BUMBYMQ28_POST_r", "BUMBYMQ32_PRE_r", "BUMBYMQ32_POST_r", 
+                           "BUMBYMQ33_PRE_r", "BUMBYMQ33_POST_r", "BUMBYMQ35_PRE_r", "BUMBYMQ35_POST_r", 
+                           "BUMBYMQ37_PRE_r", "BUMBYMQ37_POST_r", "BUMBYMQ38_PRE_r", "BUMBYMQ38_POST_r"),
+                         parameterization = "theta", estimator = "ULSMV", set.seed(12345), baseline = FALSE)
+                         
+Warning messages:
+1: In lavaan::lavaan(model = Null.Model, data = set.seed(12345), ordered = c("BUMBYMQ1_PRE_r",  :
+  lavaan WARNING:
+    the optimizer (NLMINB) claimed the model converged, but not all
+    elements of the gradient are (near) zero; the optimizer may not
+    have found a local solution use check.gradient = FALSE to skip
+    this check.
+2: In sqrt(A1[[g]]) : NaNs produced
+3: In lavaan::lavaan(model = Null.Model, data = set.seed(12345), ordered = c("BUMBYMQ1_PRE_r",  :
+  lavaan WARNING: estimation of the baseline model failed.
+  
+lavInspect(Fit.Null.Model.covar, "optim.gradient")
+(eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con) 
+     1.204     -1.105      0.872      1.416      3.493      0.013      4.030      0.529     -0.308      0.200      1.343      0.497      1.805 
+  (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con) 
+    -0.071      2.787      0.595     -1.092      0.532     -1.696     -1.053     -4.667     -0.333     -5.145     -0.691      0.884     -0.119 
+  (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con)   (eq.con) 
+     0.468      0.669      0.439      1.828     -0.550     -1.153      1.947      0.081      0.931     -1.081     -1.379     -0.331     -0.522 
+  (eq.con) F1T2~~F1T2 F2T2~~F2T2 F1T1~~F2T1 F1T1~~F2T2 F2T1~~F1T2 F1T2~~F2T2 
+    -0.723      0.000      0.000      0.000      0.000      0.000      0.000 
+    
+    
+lavTech(Fit.Null.Model.covar, "optim.gradient")
+[1]  1.20424256 -1.10453170  0.87193803  1.41621687  3.49280061  0.01325235  4.02984244  0.52910634 -0.30752498  0.19987438  1.34326626
+[12]  0.49739738  1.80455330 -0.07138805  2.78742842  0.59463539 -1.09235779  0.53175415 -1.69577584 -1.05252501 -4.66730025 -0.33336065
+[23] -5.14541226 -0.69095526  0.88374787 -0.11948809  0.46798736  0.66908744  0.43885723  1.82767682 -0.55012314 -1.15309835  1.94657232
+[34]  0.08144677  0.93102933 -1.08093475 -1.37862935 -0.33062896 -0.52244172 -0.72255681  0.00000000  0.00000000  0.00000000  0.00000000
+[45]  0.00000000  0.00000000
+
+
+lavInspect(Fit.Null.Model.covar, "options")$optim.dx.tol
+[1] 0.001
+  
+  
+summary(Fit.Null.Model.covar, fit.measures = TRUE)
+lavaan 0.6-12 did NOT end normally after 11 iterations
+** WARNING ** Estimates below are most likely unreliable
+
+  Estimator                                        ULS
+  Optimization method                           NLMINB
+  Number of model parameters                        86
+  Number of equality constraints                    40
+
+  Number of observations                           109
+
+
+Parameter Estimates:
+
+  Standard errors                           Robust.sem
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  F1T1 =~                                             
+    BUMBYMQ1_PRE_r    0.000                           
+    BUMBYMQ3_PRE_r    0.000                           
+    BUMBYMQ5_PRE_r    0.000                           
+    BUMBYMQ7_PRE_r    0.000                           
+    BUMBYMQ8_PRE_r    0.000                           
+    BUMBYMQ12_PRE_    0.000                           
+    BUMBYMQ13_PRE_    0.000                           
+    BUMBYMQ15_PRE_    0.000                           
+    BUMBYMQ18_PRE_    0.000                           
+    BUMBYMQ37_PRE_    0.000                           
+  F2T1 =~                                             
+    BUMBYMQ20_PRE_    0.000                           
+    BUMBYMQ23_PRE_    0.000                           
+    BUMBYMQ24_PRE_    0.000                           
+    BUMBYMQ26_PRE_    0.000                           
+    BUMBYMQ27_PRE_    0.000                           
+    BUMBYMQ28_PRE_    0.000                           
+    BUMBYMQ32_PRE_    0.000                           
+    BUMBYMQ33_PRE_    0.000                           
+    BUMBYMQ35_PRE_    0.000                           
+    BUMBYMQ38_PRE_    0.000                           
+  F1T2 =~                                             
+    BUMBYMQ1_POST_    0.000                           
+    BUMBYMQ3_POST_    0.000                           
+    BUMBYMQ5_POST_    0.000                           
+    BUMBYMQ7_POST_    0.000                           
+    BUMBYMQ8_POST_    0.000                           
+    BUMBYMQ12_POST    0.000                           
+    BUMBYMQ13_POST    0.000                           
+    BUMBYMQ15_POST    0.000                           
+    BUMBYMQ18_POST    0.000                           
+    BUMBYMQ37_POST    0.000                           
+  F2T2 =~                                             
+    BUMBYMQ20_POST    0.000                           
+    BUMBYMQ23_POST    0.000                           
+    BUMBYMQ24_POST    0.000                           
+    BUMBYMQ26_POST    0.000                           
+    BUMBYMQ27_POST    0.000                           
+    BUMBYMQ28_POST    0.000                           
+    BUMBYMQ32_POST    0.000                           
+    BUMBYMQ33_POST    0.000                           
+    BUMBYMQ35_POST    0.000                           
+    BUMBYMQ38_POST    0.000                           
+
+Covariances:
+                     Estimate  Std.Err  z-value  P(>|z|)
+  F1T1 ~~                                               
+    F1T2                0.000                           
+  F2T1 ~~                                               
+    F2T2                0.000                           
+ .BUMBYMQ1_PRE_r ~~                                     
+   .BUMBYMQ1_POST_      0.000                           
+ .BUMBYMQ3_PRE_r ~~                                     
+   .BUMBYMQ3_POST_      0.000                           
+ .BUMBYMQ5_PRE_r ~~                                     
+   .BUMBYMQ5_POST_      0.000                           
+ .BUMBYMQ7_PRE_r ~~                                     
+   .BUMBYMQ7_POST_      0.000                           
+ .BUMBYMQ8_PRE_r ~~                                     
+   .BUMBYMQ8_POST_      0.000                           
+ .BUMBYMQ12_PRE_r ~~                                    
+   .BUMBYMQ12_POST      0.000                           
+ .BUMBYMQ13_PRE_r ~~                                    
+   .BUMBYMQ13_POST      0.000                           
+ .BUMBYMQ15_PRE_r ~~                                    
+   .BUMBYMQ15_POST      0.000                           
+ .BUMBYMQ18_PRE_r ~~                                    
+   .BUMBYMQ18_POST      0.000                           
+ .BUMBYMQ20_PRE_r ~~                                    
+   .BUMBYMQ20_POST      0.000                           
+ .BUMBYMQ23_PRE_r ~~                                    
+   .BUMBYMQ23_POST      0.000                           
+ .BUMBYMQ24_PRE_r ~~                                    
+   .BUMBYMQ24_POST      0.000                           
+ .BUMBYMQ26_PRE_r ~~                                    
+   .BUMBYMQ26_POST      0.000                           
+ .BUMBYMQ27_PRE_r ~~                                    
+   .BUMBYMQ27_POST      0.000                           
+ .BUMBYMQ28_PRE_r ~~                                    
+   .BUMBYMQ28_POST      0.000                           
+ .BUMBYMQ32_PRE_r ~~                                    
+   .BUMBYMQ32_POST      0.000                           
+ .BUMBYMQ33_PRE_r ~~                                    
+   .BUMBYMQ33_POST      0.000                           
+ .BUMBYMQ35_PRE_r ~~                                    
+   .BUMBYMQ35_POST      0.000                           
+ .BUMBYMQ37_PRE_r ~~                                    
+   .BUMBYMQ37_POST      0.000                           
+ .BUMBYMQ38_PRE_r ~~                                    
+   .BUMBYMQ38_POST      0.000                           
+  F1T1 ~~                                               
+    F2T1                0.000       NA                  
+    F2T2                0.000       NA                  
+  F2T1 ~~                                               
+    F1T2                0.000       NA                  
+  F1T2 ~~                                               
+    F2T2                0.000       NA                  
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    F1T1              0.000                           
+    F2T1              0.000                           
+    F1T2              0.000                           
+    F2T2              0.000                           
+   .BUMBYMQ1_PRE_r    0.000                           
+   .BUMBYMQ1_POST_    0.000                           
+   .BUMBYMQ3_PRE_r    0.000                           
+   .BUMBYMQ3_POST_    0.000                           
+   .BUMBYMQ5_PRE_r    0.000                           
+   .BUMBYMQ5_POST_    0.000                           
+   .BUMBYMQ7_PRE_r    0.000                           
+   .BUMBYMQ7_POST_    0.000                           
+   .BUMBYMQ8_PRE_r    0.000                           
+   .BUMBYMQ8_POST_    0.000                           
+   .BUMBYMQ12_PRE_    0.000                           
+   .BUMBYMQ12_POST    0.000                           
+   .BUMBYMQ13_PRE_    0.000                           
+   .BUMBYMQ13_POST    0.000                           
+   .BUMBYMQ15_PRE_    0.000                           
+   .BUMBYMQ15_POST    0.000                           
+   .BUMBYMQ18_PRE_    0.000                           
+   .BUMBYMQ18_POST    0.000                           
+   .BUMBYMQ20_PRE_    0.000                           
+   .BUMBYMQ20_POST    0.000                           
+   .BUMBYMQ23_PRE_    0.000                           
+   .BUMBYMQ23_POST    0.000                           
+   .BUMBYMQ24_PRE_    0.000                           
+   .BUMBYMQ24_POST    0.000                           
+   .BUMBYMQ26_PRE_    0.000                           
+   .BUMBYMQ26_POST    0.000                           
+   .BUMBYMQ27_PRE_    0.000                           
+   .BUMBYMQ27_POST    0.000                           
+   .BUMBYMQ28_PRE_    0.000                           
+   .BUMBYMQ28_POST    0.000                           
+   .BUMBYMQ32_PRE_    0.000                           
+   .BUMBYMQ32_POST    0.000                           
+   .BUMBYMQ33_PRE_    0.000                           
+   .BUMBYMQ33_POST    0.000                           
+   .BUMBYMQ35_PRE_    0.000                           
+   .BUMBYMQ35_POST    0.000                           
+   .BUMBYMQ37_PRE_    0.000                           
+   .BUMBYMQ37_POST    0.000                           
+   .BUMBYMQ38_PRE_    0.000                           
+   .BUMBYMQ38_POST    0.000                           
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    B  (BUMBYMQ11)    1.399       NA                  
+    B (BUMBYMQ1t2)    2.548       NA                  
+    B  (BUMBYMQ11)    1.399       NA                  
+    B (BUMBYMQ1t2)    2.548       NA                  
+    B  (BUMBYMQ31)    0.782       NA                  
+    B (BUMBYMQ3t2)    1.126       NA                  
+    B  (BUMBYMQ31)    0.782       NA                  
+    B (BUMBYMQ3t2)    1.126       NA                  
+    B  (BUMBYMQ51)    2.414       NA                  
+    B  (BUMBYMQ52)    1.370       NA                  
+    B  (BUMBYMQ51)    2.414       NA                  
+    B  (BUMBYMQ52)    1.370       NA                  
+    B  (BUMBYMQ71)    0.686       NA                  
+    B  (BUMBYMQ72)    2.073       NA                  
+    B  (BUMBYMQ71)    0.686       NA                  
+    B  (BUMBYMQ72)    2.073       NA                  
+    B  (BUMBYMQ81)    1.349       NA                  
+    B  (BUMBYMQ82)    1.238       NA                  
+    B  (BUMBYMQ81)    1.349       NA                  
+    B  (BUMBYMQ82)    1.238       NA                  
+    B (BUMBYMQ121)    0.948       NA                  
+    B (BUMBYMQ122)    2.548       NA                  
+    B (BUMBYMQ121)    0.948       NA                  
+    B (BUMBYMQ122)    2.548       NA                  
+    B (BUMBYMQ131)    4.510       NA                  
+    B (BUMBYMQ132)    1.326       NA                  
+    B (BUMBYMQ131)    4.510       NA                  
+    B (BUMBYMQ132)    1.326       NA                  
+    B (BUMBYMQ151)   -0.259       NA                  
+    B (BUMBYMQ152)    1.369       NA                  
+    B (BUMBYMQ151)   -0.259       NA                  
+    B (BUMBYMQ152)    1.369       NA                  
+    B (BUMBYMQ181)   -0.107       NA                  
+    B (BUMBYMQ182)    1.156       NA                  
+    B (BUMBYMQ181)   -0.107       NA                  
+    B (BUMBYMQ182)    1.156       NA                  
+    B (BUMBYMQ201)    0.573       NA                  
+    B (BUMBYMQ202)    1.469       NA                  
+    B (BUMBYMQ201)    0.573       NA                  
+    B (BUMBYMQ202)    1.469       NA                  
+    B (BUMBYMQ231)   18.621       NA                  
+    B (BUMBYMQ232)    1.030       NA                  
+    B (BUMBYMQ231)   18.621       NA                  
+    B (BUMBYMQ232)    1.030       NA                  
+    B (BUMBYMQ241)   63.522       NA                  
+    B (BUMBYMQ242)    1.242       NA                  
+    B (BUMBYMQ241)   63.522       NA                  
+    B (BUMBYMQ242)    1.242       NA                  
+    B (BUMBYMQ261)    4.693       NA                  
+    B (BUMBYMQ262)    1.367       NA                  
+    B (BUMBYMQ261)    4.693       NA                  
+    B (BUMBYMQ262)    1.367       NA                  
+    B (BUMBYMQ271)   16.793       NA                  
+    B (BUMBYMQ272)    1.401       NA                  
+    B (BUMBYMQ271)   16.793       NA                  
+    B (BUMBYMQ272)    1.401       NA                  
+    B (BUMBYMQ281)   38.633       NA                  
+    B (BUMBYMQ282)    0.353       NA                  
+    B (BUMBYMQ281)   38.633       NA                  
+    B (BUMBYMQ282)    0.353       NA                  
+    B (BUMBYMQ321)   52.530       NA                  
+    B (BUMBYMQ322)   -0.031       NA                  
+    B (BUMBYMQ321)   52.530       NA                  
+    B (BUMBYMQ322)   -0.031       NA                  
+    B (BUMBYMQ331)    2.510       NA                  
+    B (BUMBYMQ332)    1.377       NA                  
+    B (BUMBYMQ331)    2.510       NA                  
+    B (BUMBYMQ332)    1.377       NA                  
+    B (BUMBYMQ351)    0.329       NA                  
+    B (BUMBYMQ352)    1.316       NA                  
+    B (BUMBYMQ351)    0.329       NA                  
+    B (BUMBYMQ352)    1.316       NA                  
+    B (BUMBYMQ371)   14.223       NA                  
+    B (BUMBYMQ372)   -0.340       NA                  
+    B (BUMBYMQ371)   14.223       NA                  
+    B (BUMBYMQ372)   -0.340       NA                  
+    B (BUMBYMQ381)   38.630       NA                  
+    B (BUMBYMQ382)   -0.297       NA                  
+    B (BUMBYMQ381)   38.630       NA                  
+    B (BUMBYMQ382)   -0.297       NA                  
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    F1T1              1.000                           
+    F2T1              1.000                           
+   .BUMBYMQ1_PRE_r    1.000                           
+   .BUMBYMQ1_POST_    1.000                           
+   .BUMBYMQ3_PRE_r    1.000                           
+   .BUMBYMQ3_POST_    1.000                           
+   .BUMBYMQ5_PRE_r    1.000                           
+   .BUMBYMQ5_POST_    1.000                           
+   .BUMBYMQ7_PRE_r    1.000                           
+   .BUMBYMQ7_POST_    1.000                           
+   .BUMBYMQ8_PRE_r    1.000                           
+   .BUMBYMQ8_POST_    1.000                           
+   .BUMBYMQ12_PRE_    1.000                           
+   .BUMBYMQ12_POST    1.000                           
+   .BUMBYMQ13_PRE_    1.000                           
+   .BUMBYMQ13_POST    1.000                           
+   .BUMBYMQ15_PRE_    1.000                           
+   .BUMBYMQ15_POST    1.000                           
+   .BUMBYMQ18_PRE_    1.000                           
+   .BUMBYMQ18_POST    1.000                           
+   .BUMBYMQ20_PRE_    1.000                           
+   .BUMBYMQ20_POST    1.000                           
+   .BUMBYMQ23_PRE_    1.000                           
+   .BUMBYMQ23_POST    1.000                           
+   .BUMBYMQ24_PRE_    1.000                           
+   .BUMBYMQ24_POST    1.000                           
+   .BUMBYMQ26_PRE_    1.000                           
+   .BUMBYMQ26_POST    1.000                           
+   .BUMBYMQ27_PRE_    1.000                           
+   .BUMBYMQ27_POST    1.000                           
+   .BUMBYMQ28_PRE_    1.000                           
+   .BUMBYMQ28_POST    1.000                           
+   .BUMBYMQ32_PRE_    1.000                           
+   .BUMBYMQ32_POST    1.000                           
+   .BUMBYMQ33_PRE_    1.000                           
+   .BUMBYMQ33_POST    1.000                           
+   .BUMBYMQ35_PRE_    1.000                           
+   .BUMBYMQ35_POST    1.000                           
+   .BUMBYMQ37_PRE_    1.000                           
+   .BUMBYMQ37_POST    1.000                           
+   .BUMBYMQ38_PRE_    1.000                           
+   .BUMBYMQ38_POST    1.000                           
+    F1T2              1.000       NA                  
+    F2T2              1.000       NA                  
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    BUMBYMQ1_PRE_r    1.000                           
+    BUMBYMQ3_PRE_r    1.000                           
+    BUMBYMQ5_PRE_r    1.000                           
+    BUMBYMQ7_PRE_r    1.000                           
+    BUMBYMQ8_PRE_r    1.000                           
+    BUMBYMQ12_PRE_    1.000                           
+    BUMBYMQ13_PRE_    1.000                           
+    BUMBYMQ15_PRE_    1.000                           
+    BUMBYMQ18_PRE_    1.000                           
+    BUMBYMQ37_PRE_    1.000                           
+    BUMBYMQ20_PRE_    1.000                           
+    BUMBYMQ23_PRE_    1.000                           
+    BUMBYMQ24_PRE_    1.000                           
+    BUMBYMQ26_PRE_    1.000                           
+    BUMBYMQ27_PRE_    1.000                           
+    BUMBYMQ28_PRE_    1.000                           
+    BUMBYMQ32_PRE_    1.000                           
+    BUMBYMQ33_PRE_    1.000                           
+    BUMBYMQ35_PRE_    1.000                           
+    BUMBYMQ38_PRE_    1.000                           
+    BUMBYMQ1_POST_    1.000                           
+    BUMBYMQ3_POST_    1.000                           
+    BUMBYMQ5_POST_    1.000                           
+    BUMBYMQ7_POST_    1.000                           
+    BUMBYMQ8_POST_    1.000                           
+    BUMBYMQ12_POST    1.000                           
+    BUMBYMQ13_POST    1.000                           
+    BUMBYMQ15_POST    1.000                           
+    BUMBYMQ18_POST    1.000                           
+    BUMBYMQ37_POST    1.000                           
+    BUMBYMQ20_POST    1.000                           
+    BUMBYMQ23_POST    1.000                           
+    BUMBYMQ24_POST    1.000                           
+    BUMBYMQ26_POST    1.000                           
+    BUMBYMQ27_POST    1.000                           
+    BUMBYMQ28_POST    1.000                           
+    BUMBYMQ32_POST    1.000                           
+    BUMBYMQ33_POST    1.000                           
+    BUMBYMQ35_POST    1.000                           
+    BUMBYMQ38_POST    1.000    
