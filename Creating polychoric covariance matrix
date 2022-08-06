@@ -1,0 +1,31 @@
+library(lavaan)
+set.seed(1234)
+
+## Running lavcov with raw data
+lavcov <- lavCor(imp.pmm1.mol, 
+       ordered=c(
+         "BUMBYMQ1_PRE_r", "BUMBYMQ1_POST_r", "BUMBYMQ3_PRE_r", "BUMBYMQ3_POST_r", 
+         "BUMBYMQ5_PRE_r", "BUMBYMQ5_POST_r", "BUMBYMQ7_PRE_r", "BUMBYMQ7_POST_r", 
+         "BUMBYMQ8_PRE_r", "BUMBYMQ8_POST_r", "BUMBYMQ12_PRE_r", "BUMBYMQ12_POST_r", 
+         "BUMBYMQ13_PRE_r", "BUMBYMQ13_POST_r", "BUMBYMQ15_PRE_r", "BUMBYMQ15_POST_r", 
+         "BUMBYMQ18_PRE_r", "BUMBYMQ18_POST_r", "BUMBYMQ20_PRE_r", "BUMBYMQ20_POST_r", 
+         "BUMBYMQ23_PRE_r", "BUMBYMQ23_POST_r", "BUMBYMQ24_PRE_r", "BUMBYMQ24_POST_r", 
+         "BUMBYMQ26_PRE_r", "BUMBYMQ26_POST_r", "BUMBYMQ27_PRE_r", "BUMBYMQ27_POST_r", 
+         "BUMBYMQ28_PRE_r", "BUMBYMQ28_POST_r", "BUMBYMQ32_PRE_r", "BUMBYMQ32_POST_r", 
+         "BUMBYMQ33_PRE_r", "BUMBYMQ33_POST_r", "BUMBYMQ35_PRE_r", "BUMBYMQ35_POST_r", 
+         "BUMBYMQ37_PRE_r", "BUMBYMQ37_POST_r", "BUMBYMQ38_PRE_r", "BUMBYMQ38_POST_r"), 
+       group = NULL,
+       estimator = "two.stage",
+       cor.smooth = FALSE, 
+       output = "fit")
+
+## Extract data for input into lavaans CFA function
+
+rtc20.poly.covar.lavaan <- lavInspect(lavcov, "cov.ov")
+rtc20.poly.mean.lavaan <- lavInspect(lavcov, "mean.ov")
+rtc20.poly.th.lavaan <- lavInspect(lavcov, "thresholds")
+rtc20.poly.thidx.lavaan <- lavInspect(lavcov, "th.idx")
+rtc20.thresholds <- cbind(rtc20.poly.th.lavaan, rtc20.poly.thidx.lavaan)
+attr(rtc20.thresholds, "th.idx") <- c(2)
+rtc20.poly.wlsv.lavaan <- lavInspect(lavcov, "wls.obs")
+rtc20.poly.nacov.lavaan <- lavInspect(lavcov, "Gamma") 
