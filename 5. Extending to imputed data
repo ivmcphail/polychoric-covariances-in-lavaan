@@ -54,5 +54,7 @@ summary(pmm.covar.mi.cfa, scale.W = TRUE, omit.imps = c("no.conv"),
 # Error in .local(object, ...) : 
   unused arguments (scale.W = TRUE, omit.imps = "no.conv", output = "text", fit.measures = TRUE)
   
-# seems like a good, if frustrating place to stop for the day
+  
+## I also ran simpler models, as the null model in longitudinal invariance testing is a complex model, same issues were encountered  
+# This seems like a good, if frustrating place to stop for the day
         
